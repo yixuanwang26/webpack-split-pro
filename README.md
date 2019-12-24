@@ -8,6 +8,7 @@
 
 分离 manifest 有助于缓存的利用。每次变动对应文件才会使得打包的 js 文件 hash 发生变化。
 
+使用 UglifyJsPlugin 对打包后的 javascript 进行了压缩
 
 ## todo
 1. dll

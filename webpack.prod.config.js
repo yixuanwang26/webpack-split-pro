@@ -9,7 +9,7 @@ module.exports = merge(common, {
         filename: '[name]_[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
       },
-    plugins: [
-        new BundleAnalyzerPlugin(),
-    ]
+    // plugins: [
+    //     new BundleAnalyzerPlugin(),
+    // ]
 });

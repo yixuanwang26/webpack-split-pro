@@ -1,8 +1,10 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 function getPagesDir() {
     // 分析 src/pages 下面的文件夹，默认是每个文件夹下都应作为一个独立的入口，独立的 html 文件
@@ -51,11 +53,9 @@ module.exports = {
       },{
         test: /\.(png|jpg|gif|jpeg)$/,
         include: [
-          path.resolve(__dirname, "assets")
+          path.resolve(__dirname, "src/assets")
         ],
-        use: ['file-loader', {
-          loader: 'image-webpack-loader'
-        }]
+        use: ['file-loader','image-webpack-loader']
       }]
     },
     resolve: {
@@ -87,7 +87,12 @@ module.exports = {
       },
       runtimeChunk: {
         name: entrypoint => `manifest_${entrypoint.name}`
-      }
+      },
+      minimizer: [new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+        cache: true,
+        parallel: os.cpus().length - 1
+      })]
     },
     plugins: [
       new CleanWebpackPlugin({
