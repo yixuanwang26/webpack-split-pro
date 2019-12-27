@@ -1,0 +1,1 @@
+console.log('es 环境', !!"undefined"!=typeof Symbol&&Symbol.toStringTag);

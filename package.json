@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.config.js",
-    "start": "webpack-dev-server --open --config webpack.dev.config.js"
+    "start": "webpack-dev-server --open --config webpack.dev.config.js",
+    "test": "webpack --config webpack.config.test.js"
   },
   "repository": {
     "type": "git",
